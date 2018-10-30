@@ -29,6 +29,8 @@ import java.util.List;
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
+import static android.graphics.BitmapFactory.decodeFile;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -89,17 +91,17 @@ public class MainActivity extends AppCompatActivity {
             public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
 
 
-                FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(new BitmapFactory().decodeFile(imageFile.getAbsolutePath()));
+                new BitmapFactory();
+                FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(decodeFile(imageFile.getAbsolutePath()));
                 Toast.makeText(MainActivity.this, "Image access success!!!", Toast.LENGTH_LONG).show();
 
 
                 FirebaseVisionFaceDetectorOptions options =
                         new FirebaseVisionFaceDetectorOptions.Builder()
-                                .setModeType(FirebaseVisionFaceDetectorOptions.ACCURATE_MODE)
-                                .setLandmarkType(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
-                                .setClassificationType(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
+                                .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
+                                .setLandmarkMode(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
+                                .setClassificationMode(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
                                 .setMinFaceSize(0.15f)
-                                .setTrackingEnabled(true)
                                 .build();
 
 
@@ -146,21 +148,21 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                                                    FirebaseVisionFaceLandmark bottomMouth = face.getLandmark(FirebaseVisionFaceLandmark.BOTTOM_MOUTH);
+                                                    FirebaseVisionFaceLandmark bottomMouth = face.getLandmark(FirebaseVisionFaceLandmark.MOUTH_BOTTOM);
                                                     String bmN;
                                                     bmN = String.valueOf(bottomMouth);
                                                     String bm = bmN.replaceAll("com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark","");
 
 
 
-                                                    FirebaseVisionFaceLandmark leftMouth = face.getLandmark(FirebaseVisionFaceLandmark.LEFT_MOUTH);
+                                                    FirebaseVisionFaceLandmark leftMouth = face.getLandmark(FirebaseVisionFaceLandmark.MOUTH_LEFT);
                                                     String lmN;
                                                     lmN = String.valueOf(leftMouth);
                                                     String lm = lmN.replaceAll("com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark","");
 
 
 
-                                                    FirebaseVisionFaceLandmark rightMouth = face.getLandmark(FirebaseVisionFaceLandmark.RIGHT_MOUTH);
+                                                    FirebaseVisionFaceLandmark rightMouth = face.getLandmark(FirebaseVisionFaceLandmark.MOUTH_RIGHT);
                                                     String rmN;
                                                     rmN = String.valueOf(rightMouth);
                                                     String rm = rmN.replaceAll("com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark","");
