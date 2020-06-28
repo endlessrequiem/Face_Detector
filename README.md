@@ -1,2 +1,2 @@
-# Face_Detector_Expanded
-Google's Firebase ML kit Face Detector expanded (Android)
+# Face_Detector
+Google's Firebase ML kit Face Detector Demo (Android)
